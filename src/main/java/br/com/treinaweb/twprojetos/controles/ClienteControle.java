@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.treinaweb.twprojetos.entidades.Cliente;
+import br.com.treinaweb.twprojetos.entidades.UF;
 import br.com.treinaweb.twprojetos.repositorios.ClienteRepositorio;
 
 @Controller
@@ -27,6 +28,7 @@ public class ClienteControle {
         return modelAndView;
     }
 
+    // *TODO: lembrar de apagar
     // @GetMapping("/{id}")
     // public ModelAndView detalhes(@PathVariable Long id) {
     //     ModelAndView modelAndView = new ModelAndView("cliente/detalhes");
@@ -35,6 +37,7 @@ public class ClienteControle {
 
     //     return modelAndView;
     // }
+
 
     @GetMapping("/{id}")
     public ModelAndView detalhes(@PathVariable Long id) {
@@ -50,6 +53,7 @@ public class ClienteControle {
         ModelAndView modelAndView = new ModelAndView("cliente/formulario");
 
         modelAndView.addObject("cliente", new Cliente());
+        modelAndView.addObject("ufs", UF.values());
 
         return modelAndView;
     }
@@ -59,6 +63,7 @@ public class ClienteControle {
         ModelAndView modelAndView = new ModelAndView("cliente/formulario");
 
         modelAndView.addObject("cliente", clienteRepositorio.getOne(id));
+        modelAndView.addObject("ufs", UF.values());
 
         return modelAndView;
     }
